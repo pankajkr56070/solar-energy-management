@@ -1,19 +1,19 @@
 package com.arancha.solarenergy.entities;
 
 import lombok.NonNull;
+import org.hibernate.mapping.ToOne;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "distributor")
-public class Distributor {
+@Table(name = "customer")
+public class Customer {
 
     @Id
     @NonNull
-    @Column(name = "dssn")
-    private Long dssn;
+    @Column(name = "cssn")
+    private Long cssn;
     @Column(name = "name")
     private String name;
     @Column(name = "address")
@@ -22,27 +22,30 @@ public class Distributor {
     private String contact_no;
     @Column(name = "dob")
     private Date dob;
-    @OneToMany(mappedBy = "distributor", cascade = CascadeType.ALL)
-    private List<Customer> customerList;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "dssn")
+    private Distributor distributor;
+    @Column(name = "areacode")
+    private Long areacode;
 
-    public Distributor() {
+    public Customer() {
 
     }
 
-    public Distributor(@NonNull Long dssn, String name, String address, String contact_no, Date dob) {
-        this.dssn = dssn;
+    public Customer(@NonNull Long cssn, String name, String address, String contact_no, Long areacode) {
+        this.cssn = cssn;
         this.name = name;
         this.address = address;
         this.contact_no = contact_no;
-        this.dob = dob;
+        this.areacode = areacode;
     }
 
-    public Long getDssn() {
-        return dssn;
+    public Long getCssn() {
+        return cssn;
     }
 
-    public void setDssn(Long dssn) {
-        this.dssn = dssn;
+    public void setCssn(Long cssn) {
+        this.cssn = cssn;
     }
 
     public String getName() {
@@ -77,12 +80,19 @@ public class Distributor {
         this.dob = dob;
     }
 
-    public List<Customer> getCustomerList() {
-        return customerList;
+    public Distributor getDistributor() {
+        return distributor;
     }
 
-    public void setCustomerList(List<Customer> customerList) {
-        this.customerList = customerList;
+    public void setDistributor(Distributor distributor) {
+        this.distributor = distributor;
     }
 
+    public Long getAreacode() {
+        return areacode;
+    }
+
+    public void setAreacode(Long areacode) {
+        this.areacode = areacode;
+    }
 }

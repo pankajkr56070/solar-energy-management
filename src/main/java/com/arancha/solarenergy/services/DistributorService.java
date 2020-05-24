@@ -21,7 +21,7 @@ public class DistributorService {
     }
 
     public void save(Distributor distributor) {
-        distributorRepository.saveAndFlush(distributor);
+        distributorRepository.save(distributor);
     }
 
     public Distributor get(Long dssn) {

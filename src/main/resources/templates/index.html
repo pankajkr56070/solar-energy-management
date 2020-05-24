@@ -35,11 +35,54 @@
                             <td th:text="${distributor.contact_no}">Contact No</td>
                             <td th:text="${distributor.dob}">DOB</td>
                             <td>
-                                <a th:href="@{'/edit/'+ ${distributor.dssn}}" class="btn btn-primary"><i class="fas fa-user-edit ml-2">Edit</i></a>
+                                <a th:href="@{'/editDistributor/'+ ${distributor.dssn}}" class="btn btn-primary"><i class="fas fa-user-edit ml-2">Edit</i></a>
                                 &nbsp;&nbsp;&nbsp;
-                                <a th:href="@{'/delete/'+ ${distributor.dssn}}" class="btn btn-primary">Delete<i class="fas fa-user-times ml-2"></i></a>
+                                <a th:href="@{'/deleteDistributor/'+ ${distributor.dssn}}" class="btn btn-primary">Delete<i class="fas fa-user-times ml-2"></i></a>
                             </td>
                         </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <div align="left">
+                <h1>Customer List</h1>
+                <a href = "/newCustomer">Create New Customer</a>
+                <br/><br/>
+                <table border="1" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>CSSN</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Contact No</th>
+                        <th>DOB</th>
+                        <th>DSSN</TH>
+                        <th>AreaCode</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="customer : ${customerList}">
+                        <td th:text="${customer.cssn}">CSSN</td>
+                        <td th:text="${customer.name}">Name</td>
+                        <td th:text="${customer.address}">Address</td>
+                        <td th:text="${customer.contact_no}">Contact No</td>
+                        <td th:text="${customer.dob}">DOB</td>
+                        <td th:text="${customer.distributor.dssn}">DSSN</td>
+                        <td th:text="${customer.areacode}">AreaCode</td>
+                        <td>
+                            <a th:href="@{'/editCustomer/'+ ${customer.cssn}}" class="btn btn-primary"><i class="fas fa-user-edit ml-2">Edit</i></a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a th:href="@{'/deleteCustomer/'+ ${customer.cssn}}" class="btn btn-primary">Delete<i class="fas fa-user-times ml-2"></i></a>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

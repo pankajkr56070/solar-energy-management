@@ -11,22 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalLong;
-
 @Controller
 public class DistributorController {
 
     @Autowired
     private DistributorService distributorService;
-
-    @RequestMapping("/")
-    public String viewHomePage(Model model) {
-        List<Distributor> distributorList = distributorService.listAll();
-        model.addAttribute("distributorList", distributorList);
-        return "index";
-    }
 
     @RequestMapping("/newDistributor")
     public String showNewDistributor(Model model) {
@@ -36,15 +25,15 @@ public class DistributorController {
     }
 
     @RequestMapping(value = "/saveDistributor", method = RequestMethod.POST)
-    public String saveProduct(@ModelAttribute("distributor") Distributor distributor) {
+    public String saveDistributor(@ModelAttribute("distributor") Distributor distributor) {
         distributorService.save(distributor);
         return "redirect:/";
     }
 
 
-    @RequestMapping("/edit/{dssn}")
+    @RequestMapping("/editDistributor/{dssn}")
     public String showEditDistributor(@PathVariable("dssn") Long dssn, Model model) {
-        if(dssn != null) {
+        if (dssn != null) {
             Distributor distributor = distributorService.get(dssn);
             model.addAttribute("distributor", distributor);
         } else {
@@ -55,8 +44,8 @@ public class DistributorController {
 
     }
 
-    @RequestMapping("/delete/{dssn}")
-    public String deleteProduct(@PathVariable(name = "dssn") Long dssn) {
+    @RequestMapping("/deleteDistributor/{dssn}")
+    public String deleteDistributor(@PathVariable(name = "dssn") Long dssn) {
         distributorService.delete(dssn);
         return "redirect:/";
     }

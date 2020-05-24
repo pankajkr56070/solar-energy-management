@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Update Customer</title>
+</head>
+<body>
+<div align="center">
+    <h1>Update Customer</h1>
+    <br/>
+    <form action="#" th:action="@{/saveCustomer}" th:object="${customer}"
+          method="post">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>CSSN:</td>
+                <td><input type="text" th:field="*{cssn}"/></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" th:field="*{name}"/></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><input type="text" th:field="*{address}"/></td>
+            </tr>
+            <tr>
+                <td>Contact No:</td>
+                <td><input type="text" th:field="*{contact_no}"/></td>
+            </tr>
+            <tr>
+                <td>DOB:</td>
+                <td><input type="text" th:field="*{dob}"/></td>
+            </tr>
+            <tr>
+                <td>DSSN:</td>
+                <td><input type="text" th:field="*{distributor.dssn}"/></td>
+            </tr>
+            <tr>
+                <td>AreaCode:</td>
+                <td><input type="text" th:field="*{areacode}"/></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Save</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
